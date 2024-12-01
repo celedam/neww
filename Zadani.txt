@@ -1,0 +1,20 @@
+argumenty
+-f1 vstupnitext.txt/"xxxx"
+-f2 vstupniprikazy.txt/"xxxx"
+-toFile out.txt / -toConsole
+-h 
+
+funkce
+Add
+remove
+removeWord
+Replace
+ReplaceWord
+Reverse
+New Line
+Duplicate
+SwapWithPerviousLine
+SwapWithNextLine
+RemoveWhiteSpaces
+ReadNextLine
+WriteToConsoleLine
