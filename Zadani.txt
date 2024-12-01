@@ -1,20 +1,22 @@
 argumenty
 -f1 vstupnitext.txt/"xxxx"
 -f2 vstupniprikazy.txt/"xxxx"
--toFile out.txt / -toConsole
--h 
+-toFile cesta/out.txt / -toConsole(default chovani)
+-h - Help
 
 funkce
-Add
-remove
-removeWord
-Replace
-ReplaceWord
-Reverse
-New Line
-Duplicate
-SwapWithPerviousLine
+AddToEnd "Nejaky string"
+remove 8 4
+removeWord "string" 
+Replace 12 3 "AASasd"
+ReplaceWord "string" "kolo"
+Reverse abc => cba
+New Line - pridas novy radek
+Duplicate 
 SwapWithNextLine
+SwapWithPerviousLine
 RemoveWhiteSpaces
 ReadNextLine
 WriteToConsoleLine
+
+Navrni si jakykoliv enum ktery reprezentuje funkce
