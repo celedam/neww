@@ -1,0 +1,26 @@
+AddToEnd Meaning:
+This command means that you will write something, and it will be added to the end of the text file. ("example: a"; **don't forget to do NewLine if you want to write on NewLine**)
+Remove Meaning:
+This command means that you will remove index of your choice. You have to write first and last index you want to remove. ("example: rem 3 6" - you will remove 3rd to 6th index; **don't forget that first letter has index 0**)
+RemoveWord Meaning:
+This command means that you can remove word by write the word, or you can remove the word by writing index of the word. ("example: remw Hello" - you will remove every "Hello" in the text file; if you want to remove only some "Hello" do "remove Hello 1 2" - you will remove only first and second "Hello")
+Replace Meaning:
+This command means that you can replace index with other letters or other words. ("example: rep 2 o" - you will replace index 2 for "o"; "example: rep 2 Hello" - you will replace index 2 with "Hello"; "example: rep L3 2 "Hello" - your index 2 **on line 3 will be replaced to "Hello"**; **don't forget that first letter has index 0**)
+ReplaceWord Meaning:
+This command means that you can replace word by other word. ("example: repw Hello Goodbye" - you will replace every "Hello" to "Goodbye"; if you want to replace only some "Hello" you will do this - "replace Hello Goodbye 1 2" - you will replace only first and second "Hello";**"example: repw L4 Hello Goodbye", you will replace every "Hello" on line 4 for "Goodbye"**)
+Reverse Meaning:
+This command means that you can reverse word or line. ("example: rev hello world" - you will reverse words  "hello world" -> "dlrow olleh"; "example: rev l4" - you will reverse line 4)
+NewLine Meaning:
+This command means that you can add new line to the end of the text file or anywhere in the text file(if the previous lines are there). ("example: nl" - you will add new line to the end of the text file; "example: nl L4" -  you will add line 4, so u will add line after line 3)
+Duplicate Meaning:
+This command means that you can duplicate words or line. ("example: d hello world" -> hello world hello word; "example: d L4" - you will duplicate line 4 on next line; **automatic space between original and duplicates**)
+SwapWithNextLine Meaning:
+This command means that you can swap line with a next line. ("example: swnl L4" - line 4 will swap with line 5)
+SwapWithPreviousLine Meaning:
+This command means that you can swap line with a previous line. ("example: swpl L4" - line 4 will swap with line 3)
+RemoveWhiteSpaces Meaning:
+This command means that you can remove white spaces from a line. ("example: remws" - you will remove white spaces in the whole text file; "example: remws L4" - you will remove white spaces in line 4)
+ReadNextLine Meaning:
+This command means that you can read next line. ("example: rnl" - you will get information if the text file has another clean line below or not; in the other words you will know if you have to do NewLine or not)
+WriteToConsoleLine Meaning:
+This command means that you will get line console. ("example: wtcl L4" - you will get lien 4 in console)
