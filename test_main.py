@@ -66,11 +66,11 @@ class TestProcessRemoveWord(unittest.TestCase):
 
 class TestProcessReplace(unittest.TestCase):
     def test_replace(self):
-        content = ["This is the first line", "This is the second"]
+        content = ["This is the first line", "This is the second line"]
         command_line = ('replace 4 "arent"')
         lineIndex = 0
 
-        expected_output = ["This arnt fisrt line", "This is the second line"]
+        expected_output = ["Thisarenthe first line", "This is the second line"]
 
         result = process_replace(content, command_line, lineIndex)
 
@@ -170,12 +170,10 @@ class TestprocessRemoveWhiteSpaces(unittest.TestCase):
 class TestProcessWriteToConsole(unittest.TestCase):
     @patch('sys.stdout', new_callable=StringIO)
     def test_process_write_to_console(self, mock_stdout):
-        # Vstupní data pro funkci
         content = ["This is the first line", "This is the second line"]
         command_line = "writeToConsole"
         lineIndex = 1
 
-        # Zavoláme funkci
         process_write_to_console(content, command_line, lineIndex)
 
         self.assertEqual(mock_stdout.getvalue(), "This is the second line\n")
