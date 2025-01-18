@@ -73,10 +73,14 @@ def read_file_to_memory(args):
 
 # Process 'addToEnd' command
 def process_add_to_end(content, command_line, lineIndex):
+    # Použití regulárního výrazu pro extrakci textu mezi uvozovkami
     match = re.search(r'addToEnd\s+"(.+)"', command_line)
+
     if match:
-        string_to_add = match.group(1)  # Extract the string properly
-        content[lineIndex] += string_to_add  # Ensure no reversed logic interferes
+        # Extrahujeme text, který chceme připojit
+        string_to_add = match.group(1)  # Extrahuje text mezi uvozovkami
+        content[lineIndex] += " " + string_to_add  # Připojíme text na konec řádku (v seznamu)
+
     return content
 
 
@@ -131,21 +135,26 @@ def process_remove_word(content, command_line, lineIndex):
 
 
 # process 'replace' command
+# jenom to prida text ale neodstrani ho to
 def process_replace(content, command_line, lineIndex):
-    match = re.search(r'replace\s+(\d+)\s+"(.+)"', command_line)  # Pro hledání číselného indexu a náhrady
+    match = re.search(r'replace\s+(\d+)\s+"(.+)"', command_line)
     if match:
         index = int(match.group(1))  # Získání čísla indexu pro náhradu
         replacement = match.group(2)  # Slovo pro náhradu
         line = content[lineIndex]
 
-        print(f"Replacing word at index {index} with '{replacement}' in line: {line}")
+        print(f"Replacing from index {index} with '{replacement}' in line: {line}")
 
-        words = line.split()  # Rozdělení na slova podle mezer
-        if 0 <= index < len(words):
-            words[index] = replacement  # Náhrada slova na konkrétním indexu
-            content[lineIndex] = ' '.join(words)  # Spojení zpět do řádku
+        if 0 <= index < len(line):  # Ověříme, že index je platný pro řetězec
+            # Najdeme část textu, kterou chceme nahradit
+            part_before = line[:index]  # Text před indexem
+            part_after = line[index + len(replacement):]  # Text po zadané části, kterou nahrazujeme
 
-        print(f"After replacement: {content[lineIndex]}")  # Ladění pro zobrazení výsledku
+            # Sloučíme text před indexem, nový text a text po změně
+            line = part_before + replacement + part_after
+            content[lineIndex] = line  # Ulož nový řádek zpět do seznamu
+
+        print(f"After replacement: {content[lineIndex]}")
 
     return content
 
@@ -259,49 +268,49 @@ def process_commands_in_memory(content, commands):
     lineIndex = 0
 
     for line in commands:
-        print(f"Processing command: {line}")  # Zobrazení příkazu, který se právě zpracovává
+        print(f"Processing command: {line}")  # show the command that is currently processing
 
         if line.startswith("removeWord"):
-            print(f"Found removeWord command: {line}")  # Zobrazení, pokud je nalezen příkaz 'removeWord'
+            print(f"Found removeWord command: {line}")  # show, if command is valid 'removeWord'
             content = process_remove_word(content, line, lineIndex)
         elif line.startswith("addToEnd"):
-            print(f"Found addToEnd command: {line}")  # Zobrazení, pokud je nalezen příkaz 'addToEnd'
+            print(f"Found addToEnd command: {line}")  # show, if command is valid 'addToEnd'
             content = process_add_to_end(content, line, lineIndex)
         elif line.startswith("remove"):
-            print(f"Found remove command: {line}")  # Zobrazení, pokud je nalezen příkaz 'remove'
+            print(f"Found remove command: {line}")  # show, if command is valid 'remove'
             content = process_remove(content, line, lineIndex)
         elif line.startswith("reverse"):
-            print(f"Found reverse command: {line}")  # Zobrazení, pokud je nalezen příkaz 'reverse'
+            print(f"Found reverse command: {line}")  # show, if command is valid 'reverse'
             content = process_reverse(content, line, lineIndex)
         elif line.startswith("newLine"):
-            print(f"Found newLine command: {line}")  # Zobrazení, pokud je nalezen příkaz 'newLine'
+            print(f"Found newLine command: {line}")  # show, if command is valid 'newLine'
             lineIndex += 1
         elif line.startswith("duplicate"):
-            print(f"Found duplicate command: {line}")  # Zobrazení, pokud je nalezen příkaz 'duplicate'
+            print(f"Found duplicate command: {line}")  # show, if command is valid 'duplicate'
             content = process_duplicate(content, line, lineIndex)
         elif line.startswith("swapWithNextLine"):
-            print(f"Found swapWithNextLine command: {line}")  # Zobrazení, pokud je nalezen příkaz 'swapWithNextLine'
+            print(f"Found swapWithNextLine command: {line}")  # show, if command is valid 'swapWithNextLine'
             content = process_swap_with_next_line(content, line, lineIndex)
         elif line.startswith("swapWithPreviousLine"):
-            print(f"Found swapWithPreviousLine command: {line}")  # Zobrazení, pokud je nalezen příkaz 'swapWithPreviousLine'
+            print(f"Found swapWithPreviousLine command: {line}")  # show, if command is valid 'swapWithPreviousLine'
             content = process_swap_with_previous_line(content, line, lineIndex)
         elif line.startswith("removeWhiteSpaces"):
-            print(f"Found removeWhiteSpaces command: {line}")  # Zobrazení, pokud je nalezen příkaz 'removeWhiteSpaces'
+            print(f"Found removeWhiteSpaces command: {line}")  # show, if command is valid 'removeWhiteSpaces'
             content = process_remove_white_spaces(content, line, lineIndex)
         elif line.startswith("addNewLine"):
-            print(f"Found addNewLine command: {line}")  # Zobrazení, pokud je nalezen příkaz 'addNextLine'
+            print(f"Found addNewLine command: {line}")  # show, if command is valid 'addNextLine'
             content = process_add_new_line(content, line, lineIndex)
         elif line.startswith("writeToConsoleLine"):
-            print(f"Found writeToConsoleLine command: {line}")  # Zobrazení, pokud je nalezen příkaz 'writeToConsoleLine'
+            print(f"Found writeToConsoleLine command: {line}")  # show, if command is valid 'writeToConsoleLine'
             content = process_write_to_console(content, line, lineIndex)
         elif line.startswith("replaceWord"):
-            print(f"Found replaceWord command: {line}")  # Zobrazení, pokud je nalezen příkaz 'writeToConsoleLine'
+            print(f"Found replaceWord command: {line}")  # show, if command is valid 'writeToConsoleLine'
             content = process_replace_word(content, line, lineIndex)
         elif line.startswith("replace"):
-            print(f"Found replace command: {line}")  # Zobrazení, pokud je nalezen příkaz 'writeToConsoleLine'
+            print(f"Found replace command: {line}")  # show, if command is valid 'writeToConsoleLine'
             content = process_replace(content, line, lineIndex)
         else:
-            print(f"Unknown command: {line}")  # Zobrazení neznámého příkazu, pokud neodpovídá žádnému z výše uvedených
+            print(f"Unknown command: {line}")  # show unknown command if its not in commands
 
     return content
 
