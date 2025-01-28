@@ -8,7 +8,11 @@ Před začátkem práce s Djangem je nezbytné mít solidní znalosti Pythonu[3]
 
 **Otázky:**
 - Vysvětlete rozdíl mezi listem a tuple v Pythonu.
+  LIST - může se měnit, zapisuje se s hranatými závorkami, je pomalejší, je vhodný pro situace kde chceme měnit obsah listu
+  TUPLE - nemůže se měnit, zapisuje se s kulatými závorkami, je rychlejší protože python nečeká na změny s tuplem, využívá se v situacích kdy víme že se obsah nebude měnit
+  
 - Jak fungují dekorátory v Pythonu a k čemu se používají?
+  
 - Napište příklad použití list comprehension.
 
 ### 2. Úvod do Django
