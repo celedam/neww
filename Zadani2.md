@@ -12,8 +12,15 @@ Před začátkem práce s Djangem je nezbytné mít solidní znalosti Pythonu[3]
   TUPLE - nemůže se měnit, zapisuje se s kulatými závorkami, je rychlejší protože python nečeká na změny s tuplem, využívá se v situacích kdy víme že se obsah nebude měnit
   
 - Jak fungují dekorátory v Pythonu a k čemu se používají?
+  je to funkce která příjmá jinou funkci jako parametr, da se říct že vylepšuje původní funkci, používáme ji na zaznamenávání logů, autorizaci, měření výkonosti, úprava chování funkcí bez změny zdrojového kódu atd.
   
 - Napište příklad použití list comprehension.
+names = ["alice", "bob", "charlie", "diana"]
+uppercase_names = [name.upper() for name in names]
+print(uppercase_names)
+
+je to práce s listem za pomocí jenom jednoho řádku
+
 
 ### 2. Úvod do Django
 
@@ -21,8 +28,17 @@ Seznámení s Django frameworkem, jeho architekturou a základními koncepty[1][
 
 **Otázky:**
 - Co je to MVT architektura a jak se liší od MVC?
+  MVT = model-view-template, model - drží logiku a data aplikace/webovky, view - je zodpovědné za GUI, template - vkládá data do HTML **používá se v Djangu**
+  MVC = model-view-controller, model - stejný jak v MVT, view - stejný jak v MVT, controller - hlídá co uživatel dělá a co se má zobrazit **používá se v ruby on rails, angular**
+  
 - Vysvětlete, co je to Django projekt a co je Django aplikace.
+  PROJKET obsahuje nastavení a všechný potřebné soubory k aplikaci
+  APLIKACE je menší, samostatná část projektu která realizuje určitou činnost
+  
 - Jak vytvoříte nový Django projekt pomocí příkazové řádky?
+  1. musíme mít nainstalovaný Django
+  2. vytvoříme projekt, je to složka která obsahuje výchozí strukturu projektu: django-admin startproject myproject
+  3. pro ověření správnosti vytvoření projektu spustíme vývojový server který se nachazí ve složce myproject, zadáme tento kód: python manage.py runserver pokud vše proběhlo správně měli by jsme vidět něco takového: Starting development server at http://127.0.0.1:8000/ Quit the server with CONTROL-C. když klikneš       na http... tak se otevře prohlížeč na stránce djanga který potrvzuje že server běží 
 
 ### 3. URL Routing a Views
 
@@ -30,9 +46,23 @@ Pochopení, jak Django zpracovává požadavky a směruje je na příslušné vi
 
 **Otázky:**
 - Jak definujete URL patterns v Django?
+  definují se v urls.py, který je součástí každého projektu a každé aplikace
+    aplikace - každá aplikace může mít své urls.py které definují URL patterns pro konkrétní aplikaci, tento soubor obsahuje seznam URL cest které vedou na různé view
+    projekt - tento urls.py obsahuje URL na všechny aplikace aby vše bylo propojené
+  použití **name** - přidává jméno každé URL
+  
 - Vysvětlete rozdíl mezi function-based views a class-based views.
-- Jak předáváte parametry z URL do view funkce?
+  FBV - jsou jednoduché funkce které příjmají request jako argument a vracejí response
+      výhody - jednoduchost; plná kontrola nad tím, jak požadavky zpracováváš a jeké akce vykonáváš; můžeš použít libovolnou logiku pro rozhodování o tom, jak se má response sestavit.
+      nevýhody - pokud je více podobných views, může dojít k opakování kódu; čím víc je složitější aplikace, tím víc je obtížnější spravovat větší počet funkcí, protože každý nový view přidává novou funkci
 
+  CBV - je to zaležené na třídách které poskytují přehlednější a organizovanější způsob  jak zpracovávat požadavky, místo psaní jedné funkce, která dělá vše, rozdělujeme logiku do tříd
+      výhody - znovu použitelný kód; umožňuje rozdělit logiku do menších celků
+      nevýhody - složitější na pochopení, protože se pracuje s třídami a objekty; není tak jasně přehledný
+  
+- Jak předáváte parametry z URL do view funkce?
+  děláme to prostřednictvím URL patterns, kde za pomoci dynamicke URL zachytíme parametr který chceme předat, ten pak předáme jako parametr
+  
 ### 4. Models a ORM
 
 Práce s databází pomocí Django ORM[3][5].
