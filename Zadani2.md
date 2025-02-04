@@ -76,14 +76,14 @@ Práce s databází pomocí Django ORM[3][5].
   
 - Napište příklad QuerySetu pro filtrování a řazení dat.
 
-# Získání knih, které napsal konkrétní autor
-books_by_author = Book.objects.filter(author="J.K. Rowling")
+  # Získání knih, které napsal konkrétní autor
+  books_by_author = Book.objects.filter(author="J.K. Rowling")
 
-# Získání knih, které byly vydány po roce 2000
-books_after_2000 = Book.objects.filter(published_date__year__gt=2000)
+  # Získání knih, které byly vydány po roce 2000
+  books_after_2000 = Book.objects.filter(published_date__year__gt=2000)
 
-# Získání knih, které mají "Harry" v názvu
-books_with_title = Book.objects.filter(title__icontains="Harry")
+  # Získání knih, které mají "Harry" v názvu
+  books_with_title = Book.objects.filter(title__icontains="Harry")
 
 
 ### 5. Templates
