@@ -69,8 +69,22 @@ Práce s databází pomocí Django ORM[3][5].
 
 **Otázky:**
 - Jak definujete model v Django?
+  model definujeme pomocí třídy která dědí django.db.models.Models (from django.db import models), tato třída definuje tabulku která pracuje s daty
+  
 - Vysvětlete, co jsou to migrace a jak je vytvoříte a aplikujete.
+  je to mechanismus pro změny v datech 
+  
 - Napište příklad QuerySetu pro filtrování a řazení dat.
+
+# Získání knih, které napsal konkrétní autor
+books_by_author = Book.objects.filter(author="J.K. Rowling")
+
+# Získání knih, které byly vydány po roce 2000
+books_after_2000 = Book.objects.filter(published_date__year__gt=2000)
+
+# Získání knih, které mají "Harry" v názvu
+books_with_title = Book.objects.filter(title__icontains="Harry")
+
 
 ### 5. Templates
 
@@ -78,8 +92,17 @@ Tvorba dynamických HTML stránek pomocí Django template language[4].
 
 **Otázky:**
 - Jak v šabloně zobrazíte data předaná z view?
+  data předáváme pomocí contextu (dictionary který obsahuje všechny proměnné které chceme předat), django také umožňuje pracovat s filtry přímo v šablonách
+  
 - Vysvětlete, jak funguje dědičnost šablon v Django.
+  šablony dědíme pomocí tagů {% block %} - blok definuje místa v podřízené šabloně které jdou přepsat, každý blok má svůj název; a {% extends %} - používá se na začátku podřízené šablony a odkazuje na základní šablonu která se bude dědit
+  
 - Jak vytvoříte vlastní template tag?
+  vytvořením vlastího tagu umožňuje přídat do šablon vlastní logiku,
+  1. vytvoření složky pro custom template tagy
+  2. definice vlastního teplate tagu (custom_tags.py)
+  3. načtení tagů do šablony
+     
 
 ### 6. Forms
 
