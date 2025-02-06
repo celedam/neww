@@ -107,11 +107,20 @@ Tvorba dynamických HTML stránek pomocí Django template language[4].
 ### 6. Forms
 
 Zpracování uživatelských vstupů pomocí Django forms[4].
+**form jsou formulare**
 
 **Otázky:**
 - Jaký je rozdíl mezi ModelForm a Form?
+  **form** je formular ktery neni propojeny s databazemi, vsechny pole formuláře musíš definovat ručně
+  **modelform** je primo napojeny na datovou tabulku (model), django automaticky generuje pole formulare na základě polí v tabulce
+  
 - Jak validujete data v Django formuláři?
+  v djangu validujeme (kontrolujeme) pomoci validace na úrovni pole nebo celého formuláře
+  pole - kontrolujeme kazdé pole samostatně
+  formulář - zde si můžeš nastavit vlastní logiku pro kontrolu polí v celém formuláři
+   
 - Jak zpracujete nahrávaní souborů pomocí formuláře?
+  k zpracovaní souborů pomocí formulářů používáme FileField nebo ImageField a musíme správně nastavit view pro zpracování souborů
 
 ### 7. Authentication a Authorization
 
