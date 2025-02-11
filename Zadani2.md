@@ -137,8 +137,24 @@ Využití a přizpůsobení Django admin rozhraní[5].
 
 **Otázky:**
 - Jak zaregistrujete model do admin rozhraní?
+  1. vytvoření modelu
+  2. vytvoření administrátorského zápisu pro model
+  3. pokročilé přizpůsobení admin rozhraní
+     
 - Jak přizpůsobíte zobrazení modelu v admin rozhraní?
+  list_display: Určuje, které sloupce se zobrazí v seznamu objektů modelu.
+  search_fields: Určuje, podle jakých polí lze provádět vyhledávání.
+  list_filter: Umožňuje filtrovat objekty podle specifikovaných polí.
+  ordering: Určuje, podle kterého pole budou objekty seřazeny.
+  list_editable: Umožňuje úpravu polí přímo v seznamu.
+  fields: Určuje, jaká pole se zobrazí na detailní stránce objektu.
+  readonly_fields: Určuje, která pole budou pouze pro čtení.
+  
 - Vysvětlete, co jsou to admin actions a jak je vytvoříte.
+  admin actions jsou akce které admini můžou provádět hromadně na více oběktech,
+  vytvoříme je:
+  1. definicí akce - je to funkce která příjmá parametry **requst** a **queryset(objekty)** a provádí nějakou změnu na techto objektech
+  2. registrace akce - Akce jsou registrovány pomocí atributu actions v administrátorské třídě, který obsahuje seznam metod (funkcí) definovaných v této třídě
 
 ### 9. REST API s Django REST framework
 
@@ -146,8 +162,21 @@ Tvorba API endpointů pomocí Django REST framework[7].
 
 **Otázky:**
 - Co je to serializer a k čemu slouží?
+  serializer je nástroj v pythonu který převádí data z pythonu aby šli jednoduše posílat přes API
+  
 - Jak implementujete CRUD operace pomocí ViewSets?
+  pro to se používají viewsets, což jsou třídy které poskytují automatické implementace zlákladnch operací na datech, dělají automatickou logiku takže ji nemusíme psát ručně
+  
 - Vysvětlete, jak funguje autentizace v Django REST framework.
+    1. autorizační třída (určuje jak bude uživatel ověřen)
+    2. oprávnění (urcuje zda uzivatel má oprávnění k určitému zdroji)
+    3. autentizační systém
+
+       pro autentizaci používáme několik metod:
+       1. basic authentication (uzivatel musí poslat své přihlašovací údaje)
+       2. token autgentication (po přihlášení uživatel dostane token který je šifrovaný a používá se ke všem dalším ověřovaní)
+       3. session authentication (používá cookies)
+
 
 ### 10. Testování
 
