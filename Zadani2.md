@@ -184,8 +184,23 @@ Psaní a spouštění testů pro Django aplikace[5].
 
 **Otázky:**
 - Jaké typy testů můžete psát v Django?
+  v djangu můžeme psát tyto testy:
+  Unit testy – Testují jednotlivé funkce nebo metody izolovaně, bez závislosti na databázi
+  Testy pohledů (views) – Testují, zda pohledy vrací správné HTTP odpovědi a obsah pro různé požadavky
+  Testy modelů – Testují, zda modely správně pracují s databází (CRUD operace) a vztahy mezi modely
+  Testy formulářů (forms) – Testují validaci a chování formulářů při odesílání dat
+  Testy šablon (templates) – Testují, zda šablony správně vykreslují data, která jim jsou předána
+  Integrační testy – Testují interakci mezi více komponentami aplikace (např. modely, pohledy, šablony)
+  Testy URL a směrování – Testují, zda URL cesty správně mapují na požadované pohledy a vrací správné odpovědi
+  
 - Jak vytvoříte test case pro testování view?
+  Vytvoření třídy testu, která je naimportovaná z django.test.TestCase
+  Použití self.client pro simulaci HTTP požadavků
+  Ověření odpovědi pomocí metod jako assertEqual(), assertContains(), assertTemplateUsed()
+  
 - Vysvětlete, co je to test fixture a jak ji použijete.
+  fixture test se používá při práci když testujeme něco s databází a datama
+  prva potřebujeme fixture soubor který obsahuje naše data, poté použijeme atribut fixtures aby jsme načetli data
 
 ### 11. Deployment
 
@@ -193,8 +208,25 @@ Nasazení Django aplikace do produkčního prostředí[5].
 
 **Otázky:**
 - Jaké kroky jsou nezbytné pro nasazení Django aplikace?
+  1. musíme mít zajištěný server
+  2. dáme debug na False
+  3. použijeme ssl certifikát pro šifrování a bezpečnost webu
+  4. nastavíme weboví server
+  5. spuštění aplikace se servrem
+  6. spustíme migraci dat
+  7. nastavíme logování
+  8. nastavíme monitorování a zálohování
+  9. ujistíme se že je aplikace vpořádku
+  10. spustíme aplikaci
+      
 - Vysvětlete, proč je důležité používat HTTPS v produkci.
+  HTTPS šifruje data, chrání soukromí uživatelů, zajišťuje itegritu dat, zlepšení SEO (search engine optimization), vetší důvěra uživatelů, je to požadavek pro některé funkce API
+  
 - Jak nakonfigurujete Django pro použití s Gunicorn a Nginx?
+  Gunicorn: Používá se jako WSGI server pro obsluhu Django aplikace
+  Nginx: Funguje jako reverzní proxy, směruje požadavky na Gunicorn a obsluhuje statické a mediální soubory
+  Systemd: Konfigurace Gunicorn jako služby pro automatické spuštění na pozadí
+  HTTPS: Doporučeno nakonfigurovat pro bezpečnou komunikaci pomocí SSL certifikátu (např. Let's Encrypt)
 
 ### 12. Pokročilé koncepty
 
@@ -202,8 +234,19 @@ Hlubší porozumění pokročilým funkcím Django[5].
 
 **Otázky:**
 - Vysvětlete, jak fungují middleware v Django a k čemu se používají.
+  middleware jsou komponenty které zpracovávají requsety a responses za cesty, kontroluje autorizaci, autentizaci cookies, atd
+
 - Jak implementujete full-text vyhledávání v Django?
+  1. django pouze podporuje full-textové vyhledávání pro databázi postgreSQL
+  2. můžeme použít searchVextor a searachQuery, searchRank, searchRank atd
+  
 - Vysvětlete koncept signálů v Django a uveďte příklad jejich použití.
+  Signály umožňují odesílat oznámení (signal) z jedné části aplikace, a jiná část aplikace může na toto oznámení reagovat (připojit se k signálu a vykonat určitý kód
+  používáme je k:
+  1. uložení dat
+  2. přihlášení uživatele
+  3. změny v databázích
+
 
 Tímto guideline a sadou otázek můžete komplexně otestovat znalosti studenta v oblasti Python Django. Pokud student dokáže odpovědět na většinu těchto otázek a aplikovat znalosti v praxi, lze předpokládat, že má solidní porozumění Django frameworku a je schopen vyvíjet robustní webové aplikace[6][8].
 
